@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-articles',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatChipsModule, MatIconModule, MatFormFieldModule, MatCheckboxModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatChipsModule, MatIconModule, MatFormFieldModule, MatCheckboxModule, MatInputModule, ],
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
@@ -42,7 +42,8 @@ export class ArticlesComponent implements OnInit {
       this.filteredProducts = data;
       this.loading = false;  
     });
-
+ 
+  
     this.form.valueChanges.subscribe(() => {
       this.applyFilters();
     });
