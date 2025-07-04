@@ -15,7 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes), provideAnimationsAsync()
+    provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync()
   ]
 };
 export const MATERIAL_MODULES = [

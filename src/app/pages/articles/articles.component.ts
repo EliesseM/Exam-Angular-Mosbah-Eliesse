@@ -5,10 +5,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';  // <-- ici modules
-import { MatIconModule } from '@angular/material/icon';    // <-- ici modules
+import { MatChipsModule } from '@angular/material/chips';  
+import { MatIconModule } from '@angular/material/icon';    
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
@@ -40,7 +40,7 @@ export class ArticlesComponent implements OnInit {
     this.productService.getAll().subscribe(data => {
       this.products = data;
       this.filteredProducts = data;
-      this.loading = false;  // <-- Chargement terminé
+      this.loading = false;  
     });
 
     this.form.valueChanges.subscribe(() => {
