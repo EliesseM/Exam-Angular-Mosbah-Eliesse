@@ -1,0 +1,85 @@
+<div class="product-section">
+  <h2 class="section-title">Nos Articles</h2>
+
+  <mat-card class="filter-card">
+    <mat-card-content>
+      <form [formGroup]="form" class="filter-form">
+        <div class="filter-fields">
+          <div class="filter-field">
+            <label for="searchTitle">Recherche</label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="searchTitle"
+                formControlName="searchTitle"
+              />
+              <span class="suffix-icon">🔍</span>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <label for="maxPrice">Prix max (€)</label>
+            <div class="input-wrapper">
+              <input type="number" id="maxPrice" formControlName="maxPrice" />
+              <span class="suffix-icon">€</span>
+            </div>
+          </div>
+
+          <!-- Case à cocher promo -->
+          <mat-checkbox formControlName="promoOnly">En promotion</mat-checkbox>
+
+          <!-- Bouton reset -->
+          <button
+            mat-stroked-button
+            color="warn"
+            type="button"
+            (click)="resetFilters()"
+          >
+            Réinitialiser
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div
+    class="product-grid"
+    *ngIf="filteredProducts.length > 0; else noProducts"
+  >
+    <mat-card class="product-card" *ngFor="let product of filteredProducts">
+      <img mat-card-image [src]="product.image" alt="{{ product.title }}" />
+      <mat-card-header>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{ product.description }}</p>
+
+        <div *ngIf="product.discountPercent > 0; else noDiscount">
+          <p class="price-section">
+            <span class="old-price">{{ product.fullPrice | currency }}</span>
+            <span class="new-price">
+              {{ getDiscountedPrice(product) | currency }}
+            </span>
+            <mat-chip color="warn" selected>
+              -{{ product.discountPercent * 100 }}% Promo
+            </mat-chip>
+          </p>
+        </div>
+        <ng-template #noDiscount>
+          <p class="price new-price">{{ product.fullPrice | currency }}</p>
+        </ng-template>
+
+        <ul class="features">
+          <li *ngFor="let feature of product.features">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+            <strong>{{ feature.title }}:</strong> {{ feature.description }}
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #noProducts>
+    <p class="no-products" *ngIf="!loading">Aucun article trouvé.</p>
+  </ng-template>
+</div>
