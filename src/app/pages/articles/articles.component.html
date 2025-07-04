@@ -80,6 +80,9 @@
   </div>
 
   <ng-template #noProducts>
-    <p class="no-products" *ngIf="!loading">Aucun article trouvé.</p>
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+      <p>Chargement des articles...</p>
+    </div>
   </ng-template>
 </div>

@@ -10,11 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-articles',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatChipsModule, MatIconModule, MatFormFieldModule, MatCheckboxModule, MatInputModule, ],
+  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatChipsModule, MatIconModule, MatFormFieldModule, MatCheckboxModule, MatInputModule, MatProgressSpinnerModule ],
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
@@ -40,7 +41,7 @@ export class ArticlesComponent implements OnInit {
     this.productService.getAll().subscribe(data => {
       this.products = data;
       this.filteredProducts = data;
-      this.loading = false;  
+      this.loading = true;  
     });
  
   
